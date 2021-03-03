@@ -79,6 +79,20 @@ function validateEmail() {
 
 email.addEventListener("input", validateEmail) /*executer validateEmail à chaque changement de caractère dans le champs*/
 
+function validateBirthdate() {
+  if (birthdate.value == "") {
+    document.getElementById("errorBirthdate").innerHTML = "Vous devez saisir une date"
+    return false
+  } else {
+    document.getElementById("errorBirthdate").innerHTML = ""
+    return true
+  }
+}
+
+const birthdate = document.getElementById("birthdate");
+
+
+
 function validateTournament() {
   let tournamentType = numberOfTournament.value
   if (regexTournament.test(tournamentType) === false){
@@ -128,13 +142,15 @@ function validate() {
   const isTournamentValid = validateTournament();
   const isLocationValid = validateLocation();
   const isTermsOfUseValid = validateTermsOfUse();
+  const isBirthdateValid = validateBirthdate();
   if (
       isFirstnameValid
       && isLastnameValid
       && isEmailValid
       && isTournamentValid
       && isLocationValid
-      && isTermsOfUseValid ) {
+      && isTermsOfUseValid 
+      && isBirthdateValid ) {
       window.alert("Formulaire envoyé, merci d'avoir participé !");
       return true
   } else {
