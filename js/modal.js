@@ -8,9 +8,9 @@ const firstname = document.getElementById ("first");
 const lastname = document.getElementById ("last");
 const email = document.getElementById ("email");
 const numberOfTournament = document.getElementById ("quantity");
-let regexTournament = new RegExp("[0-9]"); 
-let regexEmail = new RegExp("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$")
 const locationCheckbox = document.getElementById("location");
+const regexTournament = new RegExp("[0-9]"); 
+const regexEmail = new RegExp("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$")
 
 
 
@@ -96,7 +96,9 @@ function validateLocation() {
   if (document.getElementById("location1").checked
       || document.getElementById("location2").checked
       || document.getElementById("location3").checked 
-      ||document.getElementById("location4").checked) {
+      ||document.getElementById("location4").checked
+      || document.getElementById("location5")
+      || document.getElementById("location6") ){
         document.getElementById('errorLocation').innerHTML = "";
           return true
         } else {
@@ -105,7 +107,6 @@ function validateLocation() {
         }
 } /*si une des locations est coché c'est ok sinon afficher le message d'erreur*/
 
-locationCheckbox.addEventListener("mouseover", validateLocation); /*executer validateLocation au survol de la zone*/
 
 function validateTermsOfUse() {
   if (document.getElementById("checkbox1").checked) {
@@ -121,12 +122,19 @@ document.getElementById("checkbox1").addEventListener("change", validateTermsOfU
 
 
 function validate() {
-  if (validateFirstname()
-      && validateLastname()
-      && validateEmail()
-      && validateTournament() 
-      && validateLocation() 
-      && validateTermsOfUse() ) {
+  const isFirstnameValid = validateFirstname();
+  const isLastnameValid = validateLastname();
+  const isEmailValid = validateEmail();
+  const isTournamentValid = validateTournament();
+  const isLocationValid = validateLocation();
+  const isTermsOfUseValid = validateTermsOfUse();
+  if (
+      isFirstnameValid
+      && isLastnameValid
+      && isEmailValid
+      && isTournamentValid
+      && isLocationValid
+      && isTermsOfUseValid ) {
       window.alert("Formulaire envoyé, merci d'avoir participé !");
       return true
   } else {
@@ -135,13 +143,6 @@ function validate() {
   }
 } /*si toutes les fonctions retourne vrai alors lancer la window alert et valider le formulaire, sinon afficher le message d'erreur*/
 
-let request = new XMLHttpRequest(); /*variable requete*/
 
-
-document.getElementById("btn-submit").onclick = function() {
-  request.open("POST", "https://url-service-web.com/api/addSub");
-  request.setRequestHeader("Content-Type", "application/json");
-  request.send(JSON.stringify(jsonBody));  
-} /*au click sur le bouton btn-submit executer la fonction qui lancera une requete post*/
 
 document.getElementById("formSubmit").onsubmit = validate  /*executer la fonction validate au submit du formulaire*/
