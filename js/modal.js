@@ -9,6 +9,7 @@ const lastname = document.getElementById ("last");
 const email = document.getElementById ("email");
 const numberOfTournament = document.getElementById ("quantity");
 const locationCheckbox = document.getElementById("location");
+const birthdate = document.getElementById("birthdate");
 const regexTournament = new RegExp("[0-9]"); 
 const regexEmail = new RegExp("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$")
 
@@ -62,7 +63,7 @@ function validateLastname() {
   }   /*si la valeur fait moins de deux carractères afficher le message d'erreur, sinon c'est ok*/
 }
 
-lastname.addEventListener("input", validateLastname) /*executer validateLastname a chaque changement de caractère*/
+lastname.addEventListener("input", validateLastname); /*executer validateLastname a chaque changement de caractère*/
 
 
 
@@ -77,10 +78,10 @@ function validateEmail() {
   }
 }  /*si la valeur n'est pas une adresse mail afficher message d'erreur, sinon c'est ok*/
 
-email.addEventListener("input", validateEmail) /*executer validateEmail à chaque changement de caractère dans le champs*/
+email.addEventListener("input", validateEmail); /*executer validateEmail à chaque changement de caractère dans le champs*/
 
 function validateBirthdate() {
-  if (birthdate.value == "") {
+  if (birthdate.value === "") {
     document.getElementById("errorBirthdate").innerHTML = "Vous devez saisir une date"
     return false
   } else {
@@ -89,9 +90,7 @@ function validateBirthdate() {
   }
 }
 
-const birthdate = document.getElementById("birthdate");
-
-
+birthdate.addEventListener("input", validateBirthdate);
 
 function validateTournament() {
   let tournamentType = numberOfTournament.value
@@ -104,15 +103,15 @@ function validateTournament() {
   }
 } /*si la valeur n'est pas un chiffre afficher le message d'erreur, sinon c'est ok*/
 
-numberOfTournament.addEventListener("input", validateTournament) /*executer validateTournament à chaque changement de caractère dans le champs*/
+numberOfTournament.addEventListener("input", validateTournament); /*executer validateTournament à chaque changement de caractère dans le champs*/
 
 function validateLocation() {
   if (document.getElementById("location1").checked
       || document.getElementById("location2").checked
       || document.getElementById("location3").checked 
       ||document.getElementById("location4").checked
-      || document.getElementById("location5")
-      || document.getElementById("location6") ){
+      || document.getElementById("location5").checked
+      || document.getElementById("location6").checked ){
         document.getElementById('errorLocation').innerHTML = "";
           return true
         } else {
