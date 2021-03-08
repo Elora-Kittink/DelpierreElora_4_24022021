@@ -40,7 +40,7 @@ function closeModal () {
 }
 
 function validateFirstname() {
-  let firstnameLength = firstname.value.length;
+  const firstnameLength = firstname.value.length;
   if (firstnameLength < 2) {
     document.getElementById('errorFirstname').innerHTML = "Doit contenir au moins deux lettres";
     return false
@@ -53,7 +53,7 @@ function validateFirstname() {
 firstname.addEventListener("input", validateFirstname) /*executer validateFirstname a chaque changement de caractère*/
 
 function validateLastname() {
-  let lastnameLenght = lastname.value.length;
+  const lastnameLenght = lastname.value.length;
   if (lastnameLenght < 2) {
     document.getElementById('errorLastname').innerHTML = "Doit contenir au moins deux lettres";
     return false
@@ -68,7 +68,7 @@ lastname.addEventListener("input", validateLastname); /*executer validateLastnam
 
 
 function validateEmail() {
-  let userEmail = email.value
+  const userEmail = email.value
   if (regexEmail.test(userEmail) === false) {
     document.getElementById('errorEmail').innerHTML = "Adresse mail invalide"
     return false
