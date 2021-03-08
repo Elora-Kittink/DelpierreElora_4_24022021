@@ -1,8 +1,8 @@
 
 
-const modalbg = document.querySelector(".bground"); /*modalbg = .bground*/
-const modalBtn = document.querySelectorAll(".modal-btn"); /*modalBtn = .modal-btn*/ 
-const formData = document.querySelectorAll(".formData"); /* formData = .formData */
+const modalbg = document.querySelector(".bground"); 
+const modalBtn = document.querySelectorAll(".modal-btn"); 
+const formData = document.querySelectorAll(".formData"); 
 const closeBtn = document.querySelector (".close");
 const firstname = document.getElementById ("first");
 const lastname = document.getElementById ("last");
@@ -11,9 +11,7 @@ const numberOfTournament = document.getElementById ("quantity");
 const locationCheckbox = document.getElementById("location");
 const birthdate = document.getElementById("birthdate");
 const regexTournament = new RegExp("[0-9]"); 
-const regexEmail = new RegExp("^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$")
-
-
+const regexEmail = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/
 
 
 function editNav() {
@@ -23,9 +21,8 @@ function editNav() {
   } else {
     x.className = "topnav";
   }
-}  /*Si le nom de class de x est "topnav" alors on lui ajoute le nom de class "responsive" sinon ça reste juste topnav*/ 
+}  /*Utilisé sur les media queries pour faire passer la barre de navigation de sa forme desktopà sa forme mobile*/ 
 
-/*document.getElementById("navIcon") = editNav()*/
 
 modalBtn.forEach((btn) => btn.addEventListener("click", launchModal));   /*pour chaque bouton, écouter l'évenement "click" et executer la onction "launchModal" */
 
@@ -136,7 +133,7 @@ document.getElementById("checkbox1").addEventListener("change", validateTermsOfU
 
 function validate() {
   const isFirstnameValid = validateFirstname();
-  const isLastnameValid = validateLastname();
+  const isLastnameValid = validateLastname();        /*appel de toutes les fonctions, fera apparaître les messages d'erreur */
   const isEmailValid = validateEmail();
   const isTournamentValid = validateTournament();
   const isLocationValid = validateLocation();
@@ -145,7 +142,7 @@ function validate() {
   if (
       isFirstnameValid
       && isLastnameValid
-      && isEmailValid
+      && isEmailValid              /* vérifie que le formulaire peut être envoyé */
       && isTournamentValid
       && isLocationValid
       && isTermsOfUseValid 
